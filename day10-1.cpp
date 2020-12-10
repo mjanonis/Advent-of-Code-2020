@@ -14,9 +14,6 @@ int main()
     adapters.push_back(tmp);
   }
 
-  unsigned int device_joltage =
-      *std::max_element(adapters.begin(), adapters.end()) + 3;
-
   unsigned int curr_jotalge = 0;
   std::unordered_map<unsigned int, unsigned int> diff_count;
   std::sort(adapters.begin(), adapters.end());
