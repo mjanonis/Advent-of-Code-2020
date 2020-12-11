@@ -56,6 +56,9 @@ int main()
     old_layout = layout;
     for (size_t y = 0; y < layout.size(); ++y) {
       for (size_t x = 0; x < layout[y].size(); ++x) {
+        if (layout[y][x] == '.') {
+          continue;
+        }
         size_t vis_occ = vis_occupied_seats(old_layout, y, x);
         if (old_layout[y][x] == 'L' && vis_occ == 0) {
           layout[y][x] = '#';
