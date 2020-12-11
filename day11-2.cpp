@@ -5,7 +5,8 @@
 
 bool out_of_range(const std::vector<std::string>& vec, int y, int x)
 {
-  if (y < 0 || y >= vec.size() || x < 0 || x >= vec[0].size()) {
+  if (y < 0 || y >= static_cast<int>(vec.size()) || x < 0 ||
+      x >= static_cast<int>(vec[0].size())) {
     return true;
   }
   return false;
@@ -53,8 +54,8 @@ int main()
 
   do {
     old_layout = layout;
-    for (int y = 0; y < layout.size(); ++y) {
-      for (int x = 0; x < layout[y].size(); ++x) {
+    for (size_t y = 0; y < layout.size(); ++y) {
+      for (size_t x = 0; x < layout[y].size(); ++x) {
         size_t vis_occ = vis_occupied_seats(old_layout, y, x);
         if (old_layout[y][x] == 'L' && vis_occ == 0) {
           layout[y][x] = '#';

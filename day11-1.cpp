@@ -15,7 +15,8 @@ size_t adj_occupied_seats(const std::vector<std::string>& layout, int y, int x)
     int yn = y + yd[i];
     int xn = x + xd[i];
     // Check for out of range values
-    if (yn < 0 || yn >= layout.size() || xn < 0 || xn >= layout[0].size()) {
+    if (yn < 0 || yn >= static_cast<int>(layout.size()) || xn < 0 ||
+        xn >= static_cast<int>(layout[0].size())) {
       continue;
     }
 
@@ -43,8 +44,8 @@ int main()
 
   do {
     old_layout = layout;
-    for (int y = 0; y < layout.size(); ++y) {
-      for (int x = 0; x < layout[y].size(); ++x) {
+    for (size_t y = 0; y < layout.size(); ++y) {
+      for (size_t x = 0; x < layout[y].size(); ++x) {
         size_t adj_occ = adj_occupied_seats(old_layout, y, x);
         if (old_layout[y][x] == 'L' && adj_occ == 0) {
           layout[y][x] = '#';
