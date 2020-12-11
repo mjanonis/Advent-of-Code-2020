@@ -4,8 +4,8 @@
 
 int main()
 {
-  std::ifstream input{"day3.in"};
-  std::ofstream output{"day3-2.out"};
+  std::ifstream input{"day03.in"};
+  std::ofstream output{"day03-2.out"};
 
   std::vector<std::string> map;
   std::string tmp;

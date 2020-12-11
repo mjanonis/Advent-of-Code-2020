@@ -4,8 +4,8 @@
 
 int main()
 {
-  std::ifstream input{"day9.in"};
-  std::ofstream output{"day9-1.out"};
+  std::ifstream input{"day09.in"};
+  std::ofstream output{"day09-1.out"};
 
   std::list<long int> data;
   long int tmp = 0;

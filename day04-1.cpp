@@ -4,8 +4,8 @@
 
 int main()
 {
-  std::ifstream input{"day4.in"};
-  std::ofstream output{"day4-1.out"};
+  std::ifstream input{"day04.in"};
+  std::ofstream output{"day04-1.out"};
 
   std::string tmp;
   std::bitset<7> req_fields;

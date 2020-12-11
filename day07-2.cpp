@@ -24,8 +24,8 @@ size_t total_bag_contents(
 
 int main()
 {
-  std::ifstream input{"day7.in"};
-  std::ofstream output{"day7-2.out"};
+  std::ifstream input{"day07.in"};
+  std::ofstream output{"day07-2.out"};
 
   std::string tmp;
 

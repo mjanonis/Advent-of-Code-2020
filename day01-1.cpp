@@ -5,8 +5,8 @@
 
 int main()
 {
-  std::ifstream input{"day1.in"};
-  std::ofstream output{"day1-1.out"};
+  std::ifstream input{"day01.in"};
+  std::ofstream output{"day01-1.out"};
 
   std::vector<int> numbers;
   std::unordered_map<int, int> hmap;

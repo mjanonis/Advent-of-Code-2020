@@ -4,8 +4,8 @@
 
 int main()
 {
-  std::ifstream input{"day2.in"};
-  std::ofstream output{"day2-1.out"};
+  std::ifstream input{"day02.in"};
+  std::ofstream output{"day02-1.out"};
 
   std::string tmp;
   unsigned int valid_pwords = 0;

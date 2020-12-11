@@ -6,8 +6,8 @@
 
 int main()
 {
-  std::ifstream input{"day5.in"};
-  std::ofstream output{"day5-1.out"};
+  std::ifstream input{"day05.in"};
+  std::ofstream output{"day05-1.out"};
 
   std::string boarding_pass;
   int max_sid = -1;

@@ -7,8 +7,8 @@
 
 int main()
 {
-  std::ifstream input{"day5.in"};
-  std::ofstream output{"day5-2.out"};
+  std::ifstream input{"day05.in"};
+  std::ofstream output{"day05-2.out"};
 
   std::string boarding_pass;
   std::vector<size_t> all_sids, plane_sids, missing_sids(1024);

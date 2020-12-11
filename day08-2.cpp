@@ -5,8 +5,8 @@
 
 int main()
 {
-  std::ifstream input{"day8.in"};
-  std::ofstream output{"day8-2.out"};
+  std::ifstream input{"day08.in"};
+  std::ofstream output{"day08-2.out"};
 
   std::vector<std::pair<std::string, int>> program;
   std::string tmp;

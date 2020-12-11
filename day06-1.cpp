@@ -5,8 +5,8 @@
 
 int main()
 {
-  std::ifstream input{"day6.in"};
-  std::ofstream output{"day6-1.out"};
+  std::ifstream input{"day06.in"};
+  std::ofstream output{"day06-1.out"};
 
   std::string tmp;
   std::set<char> dclr;

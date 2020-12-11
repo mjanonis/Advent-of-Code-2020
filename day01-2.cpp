@@ -5,8 +5,8 @@
 
 int main()
 {
-  std::ifstream input{"day1.in"};
-  std::ofstream output{"day1-2.out"};
+  std::ifstream input{"day01.in"};
+  std::ofstream output{"day01-2.out"};
 
   std::vector<int> numbers;
   int tmp;

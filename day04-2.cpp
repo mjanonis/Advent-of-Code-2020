@@ -68,8 +68,8 @@ bool is_valid(const std::string& key, const std::string& value)
 
 int main()
 {
-  std::ifstream input{"day4.in"};
-  std::ofstream output{"day4-2.out"};
+  std::ifstream input{"day04.in"};
+  std::ofstream output{"day04-2.out"};
 
   std::string tmp, kv;
   std::bitset<7> req_fields;

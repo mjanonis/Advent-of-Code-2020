@@ -5,8 +5,8 @@
 
 int main()
 {
-  std::ifstream input{"day9.in"};
-  std::ofstream output{"day9-2.out"};
+  std::ifstream input{"day09.in"};
+  std::ofstream output{"day09-2.out"};
 
   std::vector<long int> data;
   long int tmp = 0;
