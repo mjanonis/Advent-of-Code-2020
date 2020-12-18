@@ -20,7 +20,7 @@ std::queue<char> parse(const std::string& expression)
     }
     else if (c == '+' || c == '*') {
       while (!op.empty() && op.top() != '(' &&
-             (op.top() == '+' || op.top() == '*')) {
+             (op.top() == '+' || op.top() == '*') && op.top() > c) {
         result.push(op.top());
         op.pop();
       }
@@ -77,7 +77,7 @@ long long int evaluate(std::queue<char> expression)
 int main()
 {
   std::ifstream input{"day18.in"};
-  std::ofstream output{"day18-1.out"};
+  std::ofstream output{"day18-2.out"};
 
   std::string expression;
   long long int sum = 0;
