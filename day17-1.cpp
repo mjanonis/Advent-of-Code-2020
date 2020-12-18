@@ -49,13 +49,13 @@ int main()
     old_cubes = cubes;
     for (const auto& x : old_cubes) {
       for (const auto& y : x.second) {
-          for (const auto& z : y.second) {
+        for (const auto& z : y.second) {
 
           if (z.second.first &&
               (z.second.second == 2 || z.second.second == 3)) {
             continue;
           }
-          else if(z.second.first){
+          else if (z.second.first) {
             update_active_neighbour_count(cubes, x.first, y.first, z.first,
                                           false);
             cubes[x.first][y.first][z.first].first = false;
@@ -68,7 +68,7 @@ int main()
             cubes[x.first][y.first][z.first].first = true;
             continue;
           }
-          else if(!z.second.first){
+          else if (!z.second.first) {
             continue;
           }
         }
@@ -77,12 +77,12 @@ int main()
   }
 
   size_t active_count = 0;
-  for(const auto& x : cubes){
-      for(const auto& y : x.second){
-          for(const auto& z: y.second){
-              active_count += z.second.first;
-          }
+  for (const auto& x : cubes) {
+    for (const auto& y : x.second) {
+      for (const auto& z : y.second) {
+        active_count += z.second.first;
       }
+    }
   }
 
   output << active_count << std::endl;

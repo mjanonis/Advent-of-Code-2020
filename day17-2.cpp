@@ -68,15 +68,15 @@ int main()
               continue;
             }
             else if (w.second.first) {
-              update_active_neighbour_count(cubes, x.first, y.first, z.first,w.first,
-                                            false);
+              update_active_neighbour_count(cubes, x.first, y.first, z.first,
+                                            w.first, false);
               cubes[x.first][y.first][z.first][w.first].first = false;
               continue;
             }
 
             if (!w.second.first && w.second.second == 3) {
-              update_active_neighbour_count(cubes, x.first, y.first, z.first,w.first,
-                                            true);
+              update_active_neighbour_count(cubes, x.first, y.first, z.first,
+                                            w.first, true);
               cubes[x.first][y.first][z.first][w.first].first = true;
               continue;
             }
@@ -92,9 +92,9 @@ int main()
   size_t active_count = 0;
   for (const auto& x : cubes) {
     for (const auto& y : x.second) {
-        for (const auto& z : y.second) {
-            for(const auto& w : z.second)
-        active_count += w.second.first;
+      for (const auto& z : y.second) {
+        for (const auto& w : z.second)
+          active_count += w.second.first;
       }
     }
   }
