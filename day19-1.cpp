@@ -1,30 +1,20 @@
 #include <algorithm>
 #include <cctype>
 #include <fstream>
+#include <map>
 #include <regex>
 #include <sstream>
-#include <vector>
 
 int main()
 {
   std::ifstream input{"day19.in"};
   std::ofstream output{"day19-1.out"};
 
-  std::vector<std::string> rules;
+  std::map<int, std::string> rules;
   std::string tmp;
 
   while (getline(input, tmp) && tmp.length()) {
-    rules.push_back(tmp);
-  }
-
-  std::sort(rules.begin(), rules.end(),
-            [](const std::string& s1, const std::string& s2) {
-              return stoi(s1.substr(0, s1.find(':'))) <
-                     stoi(s2.substr(0, s2.find(':')));
-            });
-
-  for (auto& s : rules) {
-    s = s.substr(s.find(':') + 2);
+    rules[stoi(tmp.substr(0, tmp.find(':')))] = tmp.substr(tmp.find(':') + 2);
   }
 
   rules[0].reserve(10000);
