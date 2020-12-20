@@ -61,8 +61,6 @@ int main()
   }
 
   unsigned long long int mult = 1;
-  size_t n_corners = 0;
-
   for (const auto& t : tiles) {
     size_t n_unique = 0;
 
@@ -72,7 +70,6 @@ int main()
       }
     }
     if (n_unique == 2) {
-      ++n_corners;
       mult *= t.first;
     }
   }
