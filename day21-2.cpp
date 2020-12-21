@@ -58,8 +58,8 @@ int main()
   }
 
   std::string dil = "";
-  for(const auto& an : allergen_name){
-      dil+=an.second + ",";
+  for (const auto& an : allergen_name) {
+    dil += an.second + ",";
   }
   // Remove last comma
   dil.pop_back();
