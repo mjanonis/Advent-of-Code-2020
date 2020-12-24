@@ -1,5 +1,5 @@
 #include <fstream>
-#include <map>
+#include <unordered_map>
 #include <sstream>
 
 int mod(const int& lhs, const int& rhs) { return (rhs + (lhs % rhs)) % rhs; }
@@ -29,7 +29,7 @@ int main()
   std::string tmp;
   getline(input, tmp);
   std::istringstream iss(tmp);
-  std::map<size_t, List*> index;
+  std::unordered_map<size_t, List*> index;
   size_t min = 1, max = 1000000;
 
   char c;
