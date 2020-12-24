@@ -86,4 +86,8 @@ int main()
 
   long long int mult = one->next->val * one->next->next->val;
   output << mult << std::endl;
+
+  for (const auto& i : index) {
+    delete i.second;
+  }
 }

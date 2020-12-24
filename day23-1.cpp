@@ -78,4 +78,8 @@ int main()
     one = one->next;
   }
   output << std::endl;
+
+  for (const auto& i : index) {
+    delete i.second;
+  }
 }
