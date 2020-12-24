@@ -1,97 +1,85 @@
 #include <algorithm>
+#include <cassert>
 #include <fstream>
 #include <iostream>
 #include <map>
 #include <sstream>
 #include <vector>
 
-void update_indices(const std::vector<int>& cups, std::map<int, size_t>& index)
-{
-  for (size_t i = 0; i < cups.size(); ++i) {
-    index[cups[i]] = i;
-  }
-}
+int mod(const int& lhs, const int& rhs) { return (rhs + (lhs % rhs)) % rhs; }
 
-// Modulo operator that always returns a positive remainder
-size_t mod(const int& lhs, const int& rhs) { return (rhs + (lhs % rhs)) % rhs; }
+struct List {
+  List(size_t v) : val{v}, next{nullptr} {}
+  size_t val;
+  List* next;
+};
+
+void insert(List* l, size_t val) { l->next = new List(val); }
+
+void make_circ(List* head)
+{
+  List* curr = head;
+  while (curr->next) {
+    curr = curr->next;
+  }
+  curr->next = head;
+}
 
 int main()
 {
   std::ifstream input{"day23.in"};
   std::ofstream output{"day23-1.out"};
 
-  std::map<int, size_t> index;
-  std::vector<int> cups;
-
   std::string tmp;
   getline(input, tmp);
   std::istringstream iss(tmp);
-  for (char c; iss >> c;) {
-    cups.push_back(c - '0');
+  std::map<size_t, List*> index;
+  size_t min = 1, max = 9;
+
+  char c;
+  iss >> c;
+  List* head = new List(c - '0');
+  index[head->val] = head;
+
+  for (List* curr = head; iss >> c;) {
+    insert(curr, c - '0');
+    curr = curr->next;
+    index[curr->val] = curr;
   }
 
-  for (size_t i = 0; i < cups.size(); ++i) {
-    index[cups[i]] = i;
-  }
+  make_circ(head);
 
-  size_t curr_cup_index = 0;
-  size_t cups_size = cups.size();
+  size_t curr_cup = head->val;
 
   for (size_t i = 0; i < 100; ++i) {
-    for (const auto& x : cups) {
-      if (x == cups[curr_cup_index]) {
+
+    size_t c1, c2, c3;
+    c1 = index[curr_cup]->next->val;
+    c2 = index[curr_cup]->next->next->val;
+    c3 = index[curr_cup]->next->next->next->val;
+    index[curr_cup]->next = index[c3]->next;
+
+    size_t dest = curr_cup - 1;
+    while (dest == c1 || dest == c2 || dest == c3 || dest < min) {
+      if (dest < min) {
+        dest = max;
         continue;
       }
+      --dest;
     }
 
-    size_t ci1, ci2, ci3;
-    ci1 = (curr_cup_index + 1) % cups_size;
-    ci2 = (curr_cup_index + 2) % cups_size;
-    ci3 = (curr_cup_index + 3) % cups_size;
+    List* dest_next = index[dest]->next;
+    index[dest]->next = index[c1];
+    index[c3]->next = dest_next;
 
-    int cdl = cups[curr_cup_index] - 1;
-    int curr_cup = cups[curr_cup_index];
-
-    while (cdl == cups[ci1] || cdl == cups[ci2] || cdl == cups[ci3] ||
-           cdl < index.begin()->first) {
-      cdl -= 1;
-      if (cdl < index.begin()->first) {
-        cdl = index.rbegin()->first;
-      }
-    }
-
-    while (index[cdl] > ci1) {
-      std::iter_swap(cups.begin() + ci3, cups.begin() + (ci3 + 1) % cups_size);
-      std::iter_swap(cups.begin() + ci2, cups.begin() + (ci2 + 1) % cups_size);
-      std::iter_swap(cups.begin() + ci1, cups.begin() + (ci1 + 1) % cups_size);
-      ci1 = (ci1 + 1) % cups_size;
-      ci2 = (ci2 + 1) % cups_size;
-      ci3 = (ci3 + 1) % cups_size;
-
-      update_indices(cups, index);
-    }
-    while (index[cdl] < ci1 && ci1 - index[cdl] != 1) {
-      std::iter_swap(cups.begin() + ci1,
-                     cups.begin() + mod(ci1 - 1, cups_size));
-      std::iter_swap(cups.begin() + ci2,
-                     cups.begin() + mod(ci2 - 1, cups_size));
-      std::iter_swap(cups.begin() + ci3,
-                     cups.begin() + mod(ci3 - 1, cups_size));
-      ci1 = mod((ci1 - 1), cups_size);
-      ci2 = mod((ci2 - 1), cups_size);
-      ci3 = mod((ci3 - 1), cups_size);
-
-      update_indices(cups, index);
-    }
-
-    curr_cup_index = (index[curr_cup] + 1) % cups_size;
+    curr_cup = index[curr_cup]->next->val;
   }
 
-  std::rotate(cups.begin(), std::find(cups.begin(), cups.end(), 1), cups.end());
-
-  for (auto it = cups.begin() + 1; it != cups.end(); ++it) {
-    output << *it;
+  List* one = index[1];
+  one = one->next;
+  for (size_t i = 1; i < 9; ++i) {
+    output << one->val;
+    one = one->next;
   }
-
   output << std::endl;
 }
