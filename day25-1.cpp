@@ -13,6 +13,8 @@ long long int transform(long long int subj, size_t loop_size)
   return res;
 }
 
+// Taken from https://cp-algorithms.com/algebra/discrete-log.html
+// Meet-in-the-middle solution
 size_t get_loop_size(long long int subj, long long int public_key, size_t mod)
 {
   subj %= mod;
